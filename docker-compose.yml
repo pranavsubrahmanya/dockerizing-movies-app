@@ -6,7 +6,7 @@ services:
       context: ./client
       dockerfile: Dockerfile
     ports:
-      - 3000:3000
+      - 8000:8000
     networks:
       - mern-network
     volumes:
@@ -15,7 +15,7 @@ services:
     depends_on:
       - server
     environment:
-      - REACT_APP_SERVER=http://localhost:5000
+      - REACT_APP_SERVER=http://localhost:8000
       - CHOKIDAR_USEPOLLING=true
     command: npm start
     stdin_open: true
@@ -35,7 +35,7 @@ services:
       - db
     environment:
       - MONGO_URL=mongodb://db:27017
-      - CLIENT=http://localhost:3000
+      - CLIENT=http://localhost:5000
     command: /usr/app/node_modules/.bin/nodemon -L src/index.js
 
   db:
